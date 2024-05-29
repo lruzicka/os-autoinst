@@ -1478,6 +1478,20 @@ sub mouse_set ($mx, $my) {
     query_isotovideo('backend_mouse_set', {x => $mx, y => $my});
 }
 
+=head2 mouse_to_tag
+
+  mouse_to_tag($mustmatch);
+
+Move mouse to a location defined by a needle tag.
+
+=cut
+
+sub mouse_to_tag ($mustmatch, %args) {
+    my $tag = assert_screen($mustmatch, $args{timeout});
+    my ($x, $y) = _calculate_clickpoint($tag);
+    mouse_set($x, $y);
+}
+
 =head2 mouse_click
 
   mouse_click([$button, $hold_time]);
